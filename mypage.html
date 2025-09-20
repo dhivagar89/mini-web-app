@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #score {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mini Game</h1>
+    <button id="jumpBtn">Jump!</button>
+    <div id="score">Score: 0</div>
+
+    <script>
+        let score = 0;
+        const button = document.getElementById("jumpBtn");
+        const scoreDiv = document.getElementById("score");
+
+        button.addEventListener("click", () => {
+            score++;
+            scoreDiv.textContent = "Score: " + score;
+            // Send score to Wix
+            window.parent.postMessage({ type: 'updateScore', value: score }, '*');
+        });
+    </script>
+</body>
+</html>
